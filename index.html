@@ -49,15 +49,26 @@
             border-radius: 0.5rem; /* 8px */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        .skill-bar-bg {
-            background-color: #e5e7eb; /* Tailwind gray-200 */
+        .skill-tag {
+            padding: 0.375rem 0.75rem; /* py-1.5 px-3 */
+            margin: 0.25rem; /* m-1 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            display: inline-block;
+            line-height: 1.25; /* leading-tight */
+            border: 1px solid transparent;
         }
-        .skill-bar {
-            background-color: #3b82f6; /* Tailwind blue-500 */
-            transition: width 0.5s ease-in-out;
+        .skill-tag-soft {
+            background-color: #DBEAFE; /* Tailwind blue-100 */
+            color: #1E3A8A; /* Tailwind blue-800 */
+            border-color: #BFDBFE; /* Tailwind blue-200 */
         }
-        /* Simple animation for skill bars on load (optional, requires JS to trigger on scroll into view for better effect) */
-        /* For simplicity, this example doesn't include scroll-triggered animations */
+        .skill-tag-tech {
+            background-color: #D1FAE5; /* Tailwind green-100 */
+            color: #065F46; /* Tailwind green-700 */
+            border-color: #A7F3D0; /* Tailwind green-200 */
+        }
 
         /* Print-friendly styles */
         @media print {
@@ -107,12 +118,21 @@
              .timeline-content {
                 page-break-inside: avoid;
             }
+            .skill-tag { /* Base print style for all tags */
+                background-color: #f3f4f6 !important; /* Tailwind gray-100 */
+                color: #1f2937 !important; /* Tailwind gray-800 */
+                border: 1px solid #d1d5db !important; /* Tailwind gray-300 */
+                padding: 0.25rem 0.5rem;
+            }
+            .section-heading-icon {
+                color: #000000 !important; /* Ensure icons are black for print */
+            }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
 
         <header class="text-center mb-12 print-bg-white">
             <img src="https://raw.githubusercontent.com/cherryshek-1014/cherryshek-1014.github.io/refs/heads/main/2103607.png"  class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg print-shadow-none">
@@ -121,72 +141,34 @@
             <div class="mt-4 flex justify-center space-x-4 text-gray-500 print-text-black">
                 <a href="mailto:cherryshek.1014@gmail.com" class="hover:text-blue-600">cherryshek.1014@gmail.com</a>
                 <span>&bull;</span>
-                <a href="https://www.linkedin.com/in/cherryshek/" target="_blank" class="hover:text-blue-600">LinkedIn Profile</a>
+                <a href="https://www.linkedin.com/in/cherryshek/" target="_blank" class="text-blue-600 hover:text-blue-600">LinkedIn Profile</a>
                 <span>&bull;</span>
-                <a href="https://github.com/cherryshek-1014" target="_blank" class="hover:text-blue-600">GitHub Profile</a>
+                <a href="https://github.com/cherryshek-1014" target="_blank" class="text-blue-600 hover:text-blue-600">GitHub Profile</a>
             </div>
-            <button onclick="window.print()" class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-print">
+            <!-- <button onclick="window.print()" class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-print">
                 Print / Save as PDF
-            </button>
+            </button> -->
         </header>
 
         <section class="mb-12 print-bg-white">
-            <h2 class="text-2xl font-semibold border-b-2 border-blue-500 pb-2 mb-6 print-text-black">About Me</h2>
+            <div class="flex items-center border-b-2 border-blue-500 pb-2 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="section-heading-icon w-6 h-6 mr-3 text-blue-600 print-text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <h2 class="text-2xl font-semibold print-text-black">About Me</h2>
+            </div>
             <p class="text-gray-700 leading-relaxed print-text-black">
                 Results-driven data professional with over 6 years of expertise, including 6 months as Interim Head of Data Engineering. Demonstrated success in leading teams, designing and implementing data-driven solutions, and delivering impactful projects across various industries. Skilled in both data science and data engineering, with a solid background in statistics and extensive experience with cloud platforms.
             </p>
         </section>
 
         <section class="mb-12 print-bg-white">
-            <h2 class="text-2xl font-semibold border-b-2 border-blue-500 pb-2 mb-6 print-text-black">Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-4 rounded-lg shadow print-shadow-none">
-                    <h3 class="text-lg font-medium mb-2 print-text-black">Python</h3>
-                    <div class="w-full skill-bar-bg rounded-full h-4 mb-2">
-                        <div class="skill-bar h-4 rounded-full" style="width: 90%;"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right print-text-black">90% Proficient</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow print-shadow-none">
-                    <h3 class="text-lg font-medium mb-2 print-text-black">SQL</h3>
-                    <div class="w-full skill-bar-bg rounded-full h-4 mb-2">
-                        <div class="skill-bar h-4 rounded-full" style="width: 90%;"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right print-text-black">90% Proficient</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow print-shadow-none">
-                    <h3 class="text-lg font-medium mb-2 print-text-black">Visualisation Tools (PBI,Looker)</h3>
-                    <div class="w-full skill-bar-bg rounded-full h-4 mb-2">
-                        <div class="skill-bar h-4 rounded-full" style="width: 80%;"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right print-text-black">80% Proficient</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow print-shadow-none">
-                    <h3 class="text-lg font-medium mb-2 print-text-black">Git/ DevOps Git</h3>
-                    <div class="w-full skill-bar-bg rounded-full h-4 mb-2">
-                        <div class="skill-bar h-4 rounded-full" style="width: 75%;"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right print-text-black">75% Proficient</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow print-shadow-none">
-                    <h3 class="text-lg font-medium mb-2 print-text-black">Command Line.Scripting (Bash/PowerShell)</h3>
-                    <div class="w-full skill-bar-bg rounded-full h-4 mb-2">
-                        <div class="skill-bar h-4 rounded-full" style="width: 70%;"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right print-text-black">70% Proficient</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow print-shadow-none">
-                    <h3 class="text-lg font-medium mb-2 print-text-black">Data Architecture</h3>
-                    <div class="w-full skill-bar-bg rounded-full h-4 mb-2">
-                        <div class="skill-bar h-4 rounded-full" style="width: 80%;"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 text-right print-text-black">80% Proficient</p>
-                </div>
-                </div>
-        </section>
-
-        <section class="mb-12 print-bg-white">
-            <h2 class="text-2xl font-semibold border-b-2 border-blue-500 pb-2 mb-6 print-text-black">Experience</h2>
+            <div class="flex items-center border-b-2 border-blue-500 pb-2 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="section-heading-icon w-6 h-6 mr-3 text-blue-600 print-text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h2 class="text-2xl font-semibold print-text-black">Experience</h2>
+            </div>
             <div class="timeline-container">
                 <div class="timeline-item">
                     <div class="timeline-content print-shadow-none">
@@ -195,23 +177,40 @@
                         <p class="text-md font-medium text-gray-700 print-text-black">Head of Data Engineering</p>
                         <p class="text-sm text-gray-500 mb-2 print-text-black">October 2024 - Present</p>
                         <ul class="list-disc list-inside text-gray-600 space-y-1 print-text-black">
-                            <li>Managed the migration of legacy systems to cloud-based solutions, enhancing scalability and performance.</li>
+                            <li>Managed the migration of legacy systems to cloud-based solutions, reducing cost <b>by >£2K/month</b> for the organisation</li>
                             <li>Established cross-functional collaboration between Data Engineering, Data Science, and Business teams, driving the successful delivery of valuable insights</li>
                             <li>Introduced agile methodologies to the data engineering workflow, increasing sprint velocity and boosting team morale.</li>
                             <li>Collaborated with the analytics team to drive the adoption of DevOps practices, improving development efficiency and deployment.</li>
-                            <li>Promoted technical excellence by implementing best practices across the team, ensuring quality and innovation in workflows.</li>
-                            
+                            <li>Promoted technical excellence by implementing best practices across the team, ensuring quality and innovation in workflows.</li>  
                         </ul>
-                        <br>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-soft">Crisis Management</span>
+                            <span class="skill-tag skill-tag-soft">Conflict Resolution</span>
+                            <span class="skill-tag skill-tag-soft">Risk Evaluation</span>
+                            <span class="skill-tag skill-tag-soft">Data Strategy</span>
+                            <span class="skill-tag skill-tag-soft">Data Governace</span>
+                            <span class="skill-tag skill-tag-tech">Data Infrastruture</span>
+                            <span class="skill-tag skill-tag-tech">Azure DevOps</span>
+                            <span class="skill-tag skill-tag-tech">Agile and Scrum</span>
+                        </div>
+                        <hr class="my-4 border-gray-200">
                         <p class="text-md font-medium text-gray-700 print-text-black">Interim Head of Data Engineering</p>
                         <p class="text-sm text-gray-500 mb-2 print-text-black">April 2024 - October 2024</p>
                         <ul class="list-disc list-inside text-gray-600 space-y-1 print-text-black">
-                            <li>Led and expanded the Data Engineering team from 3 to 5 members, fostering growth and expertise.</li>
-                            <li>Delivered T-SQL training sessions to the team, enhancing technical skills and knowledge sharing.</li>
-                            <li>Organized and chaired monthly in-person workshops to encourage team development and continuous learning.</li>
-                            <li>Attended monthly directorate leadership meetings, regularly updating the operating plan to capture progress and assess risks.</li>
+                            <li>Optimised data validation tool, reduced runtime <b>by ~36%</b></li>
+                            <li>Led and expanded the Data Engineering team from 5 to 8 members, fostering growth and expertise.</li>
+                            <li>Delivered training programs to the team, enhancing technical skills and knowledge sharing.</li>
                         </ul>
-                        <br>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-soft">Leadership</span>
+                            <span class="skill-tag skill-tag-soft">Problem Solving</span>
+                            <span class="skill-tag skill-tag-soft">Stakeholder Management</span>
+                            <span class="skill-tag skill-tag-tech">Unit Testing</span>
+                            <span class="skill-tag skill-tag-tech">Process Design</span>
+                            <span class="skill-tag skill-tag-tech">Microsoft Power Platform</span>
+                            <span class="skill-tag skill-tag-tech">Data/System Migration</span>
+                        </div>
+                        <hr class="my-4 border-gray-200">
                         <p class="text-md font-medium text-gray-700 print-text-black">Senior Data Engineer</p>
                         <p class="text-sm text-gray-500 mb-2 print-text-black">May 2023 - April 2024</p>
                         <ul class="list-disc list-inside text-gray-600 space-y-1 print-text-black">
@@ -221,7 +220,19 @@
                             <li>Worked closely with the Finance team to automate key metric calculations, improving efficiency and accuracy</li>
                             <li>Initiated the implementation of a new data lake storage architecture, significantly improving data accessibility across the team</li>
                         </ul>
-                    
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-tech">Python/PySpark</span>
+                            <span class="skill-tag skill-tag-tech">SQL Database</span>
+                            <span class="skill-tag skill-tag-tech">Powershell</span>
+                            <span class="skill-tag skill-tag-tech">ETL Pipeline</span>
+                            <span class="skill-tag skill-tag-tech">Git Version Control</span>
+                            <span class="skill-tag skill-tag-tech">Azure Data Lake Gen 2</span>
+                            <span class="skill-tag skill-tag-tech">Azure Synapse</span>
+                            <span class="skill-tag skill-tag-tech">Pipeline Automation</span>
+                            <span class="skill-tag skill-tag-soft">Cross-functional collaboration</span>
+                            <span class="skill-tag skill-tag-soft">Agile Methodologies</span>
+                            <span class="skill-tag skill-tag-soft">Stakeholder Management</span>
+                        </div>
                     </div>
                 </div>
 
@@ -232,10 +243,20 @@
                         <p class="text-md font-medium text-gray-700 print-text-black">Grocery Commercial Data Scientist</p>
                         <p class="text-sm text-gray-500 mb-2 print-text-black">July 2022 - April 2023</p>
                         <ul class="list-disc list-inside text-gray-600 space-y-1 print-text-black">
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li>Developed a customer segmentation model using RFM analysis that improved the CRM campaign and <b>reduced cost by ~10%</b></li>
+                            <li>Run spatial prediction to identify the best location to open new grocery stores </li>
+                            <li>Perform power calculation for campaign experiment to understand MDEs for desirable outcome metrics </li>
+                            <li>Create and maintain Looker Explores to surface model results to the wider business</li>
                         </ul>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-tech">Python Automation</span>
+                            <span class="skill-tag skill-tag-tech">Experimental Design </span>
+                            <span class="skill-tag skill-tag-tech">LookML / Looker</span>
+                            <span class="skill-tag skill-tag-tech">Docker</span>
+                            <span class="skill-tag skill-tag-tech">Git Version Control</span>
+                            <span class="skill-tag skill-tag-tech">Snowflake</span>
+                            <span class="skill-tag skill-tag-tech">GCP</span>
+                        </div>
                     </div>
                 </div>
 
@@ -246,9 +267,19 @@
                         <p class="text-md font-medium text-gray-700 print-text-black">Innovation Data Scientist</p>
                         <p class="text-sm text-gray-500 mb-2 print-text-black">August 2021 - July 2022</p>
                         <ul class="list-disc list-inside text-gray-600 space-y-1 print-text-black">
-                            <li></li>
-                            <li></li>
+                            <li>Increased the accuracy of the existing retention model <b>by ~15%</b>. </li>
+                            <li>Developed and implemented a Python application that connects to DataRobot API.</li>
+                            <li>Prepare Data Protection Impact Assessment (DPIA) documents to align with the bank’s data governance.</li>
                         </ul>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-tech">API</span>
+                            <span class="skill-tag skill-tag-tech">Statisctial Modelling</span>
+                            <span class="skill-tag skill-tag-tech">Prediction Modelling</span>
+                            <span class="skill-tag skill-tag-tech">Python</span>
+                            <span class="skill-tag skill-tag-tech">S3 Storage</span>
+                            <span class="skill-tag skill-tag-tech">AWS</span>
+                            <span class="skill-tag skill-tag-soft">DPIA</span>
+                        </div>
                     </div>
                 </div>
 
@@ -259,28 +290,77 @@
                             <p class="text-md font-medium text-gray-700 print-text-black">Retail Marketing Data Scientist</p>
                             <p class="text-sm text-gray-500 mb-2 print-text-black">May 2018 - August 2021</p>
                             <ul class="list-disc list-inside text-gray-600 space-y-1 print-text-black">
-                                <li></li>
-                                <li></li>
+                                <li>Designed and led the implementation of a data validation tool, <b>reduced over-time hours by over 90%</b></li>
+                                <li>Implemented a web scraping application for EV Charging Estimation</li>
+                                <li>Retrieve data from Google API for Small and Medium-sized enterprised clients</li>
+                                <li>Utilise NLP tools to understand customer dissatifaction</li>
+                                <li>Implemented process automation for daily batch data collection</li>
                             </ul>
+                    
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="skill-tag skill-tag-tech">Pyppeteer</span>
+                        <span class="skill-tag skill-tag-tech">Webscraping</span>
+                        <span class="skill-tag skill-tag-tech">Natural Language Processing</span>
+                        <span class="skill-tag skill-tag-tech">Statisctial Modelling</span>
+                        <span class="skill-tag skill-tag-tech">Google API</span>
+                        <span class="skill-tag skill-tag-tech">Cron</span>
+                        <span class="skill-tag skill-tag-tech">Snowflake</span>
+                        <span class="skill-tag skill-tag-soft">DPIA</span>
                     </div>
+                
                 </div>
                 </div>
         </section>
 
         <section class="mb-12 print-bg-white">
-            <h2 class="text-2xl font-semibold border-b-2 border-blue-500 pb-2 mb-6 print-text-black">Education</h2>
+            <div class="flex items-center border-b-2 border-blue-500 pb-2 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="section-heading-icon w-6 h-6 mr-3 text-blue-600 print-text-black" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                </svg>
+                <h2 class="text-2xl font-semibold print-text-black">Education</h2>
+                </div>
             <div class="space-y-6">
                 <div class="bg-white p-6 rounded-lg shadow print-shadow-none">
                     <h3 class="text-xl font-semibold text-blue-600 print-text-black">Msci Statistics with Work Placement</h3>
                     <p class="text-md font-medium text-gray-700 print-text-black">Univerity of Glasgow &bull; Glasgow,UK</p>
                     <p class="text-sm text-gray-500 mb-1 print-text-black">2013 - 2018</p>
-                    <p class="text-gray-600 print-text-black">Master Dissertation Topic: Detecting and comparing multiple social frontiers in small area data</p>
-                    <p class="text-gray-600 print-text-black">Scottish Government Work Placement Dissertation Topic: Explore the relationships between staff diversity characteristics and different factors relating to their pay</p>
+                    <p class="text-md font-medium text-gray-700 print-text-black">Master Dissertation Topic:</p>
+                    <p class="text-gray-600 print-text-black"> Detecting and comparing multiple social frontiers in small area data</p>
+                    <br>
+                    <p class="text-md font-medium text-gray-700 print-text-black">Scottish Government Work Placement Dissertation Topic:</p>
+                    <p class="text-gray-600 print-text-black"> Explore the relationships between staff diversity characteristics and different factors relating to their pay</p>
                 </div>
                 </div>
         </section>
 
-        <!-- <section class="mb-12 print-bg-white">
+        <section class="mb-12 print-bg-white">
+            <div class="flex items-center border-b-2 border-blue-500 pb-2 mb-6">
+               <svg xmlns="http://www.w3.org/2000/svg" class="section-heading-icon w-6 h-6 mr-3 text-blue-600 print-text-black" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /> 
+               </svg>
+               <h2 class="text-2xl font-semibold print-text-black">Certifications</h2>
+           </div>
+           <div class="grid grid-cols-2 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow print-shadow-none">
+                <h3 class="text-xl font-semibold text-blue-600 mb-1 print-text-black">Azure Data Fundamentals - DP 900</h3>
+                <p class="text-sm text-gray-500 mb-2 print-text-black">Microsoft &bull; July 2023</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow print-shadow-none">
+                <h3 class="text-xl font-semibold text-blue-600 mb-1 print-text-black">Agile Story Essential</h3>
+                <p class="text-sm text-gray-500 mb-2 print-text-black">QA &bull; January 2022</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow print-shadow-none">
+                <h3 class="text-xl font-semibold text-blue-600 mb-1 print-text-black">Auto ML</h3>
+                <p class="text-sm text-gray-500 mb-2 print-text-black">Data Robot &bull; Sep 2021</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow print-shadow-none">
+                <h3 class="text-xl font-semibold text-blue-600 mb-1 print-text-black">Data Wrangling</h3>
+                <p class="text-sm text-gray-500 mb-2 print-text-black">Trifacta &bull; January 2019</p>
+            </div>
+            </div>
+       </section>
+<!-- 
+        <section class="mb-12 print-bg-white">
             <h2 class="text-2xl font-semibold border-b-2 border-blue-500 pb-2 mb-6 print-text-black">Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-lg shadow print-shadow-none">
@@ -307,34 +387,6 @@
         </footer>
 
     </div>
-
-    <script>
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Placeholder for potential future JS for animations or interactivity
-        // For example, to animate skill bars when they scroll into view:
-        /*
-        const skillBars = document.querySelectorAll('.skill-bar');
-        const animateSkillBars = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.width = entry.target.dataset.width; // Assuming you set data-width attribute
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-        const skillObserver = new IntersectionObserver(animateSkillBars, { threshold: 0.5 });
-        skillBars.forEach(bar => {
-            // bar.dataset.width = bar.style.width; // Store initial width
-            // bar.style.width = '0%'; // Reset for animation
-            skillObserver.observe(bar);
-        });
-        */
-        // Note: The above JS for skill bar animation is commented out for simplicity.
-        // To use it, you'd need to adjust the HTML to include data-width attributes on skill bars
-        // and potentially remove the inline style="width: XX%;" from the HTML.
-    </script>
 
 </body>
 </html>
